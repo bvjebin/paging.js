@@ -1,64 +1,66 @@
 /*
 	Paging.js v 0.1	
+	Author: jebin
+	git: https://github.com/bvjebin/paging.js
 */
 
-"use strict";
-;(function($){
-	$.paging = function(el, options, index){
-	    
-	    var _this = this, 
-	    	_index = index,
-	    	options,
-	    	_template,
-	    	_$pageItems,
-	    	_$paginationHolder,
-	    	_totalPages,
-	    	_currentPage,
-	    	_totalItems;
-	    
-	    var _initialize = function() {
-	    	_setPagingItems(_this.$el.children().first());
-	    	_drawCurrentPage();
-	    	_bindEvents(_this.$el);
+"use strict";;
+(function($) {
+	$.paging = function(el, options, index) {
+
+		var _this = this,
+			_index = index,
+			options,
+			_template,
+			_$pageItems,
+			_$paginationHolder,
+			_totalPages,
+			_currentPage,
+			_totalItems,
+			_stealth_mode;
+
+		var _initialize = function() {
+			_drawCurrentPage();
+			_bindEvents(_this.$el);
 			return;
 		};
 
 		var _init = function() {
 
-			options = $.extend({},$.paging.defaultOptions, options);
+			options = $.extend({}, $.paging.defaultOptions, options);
 
-	    	//onBeforeInit Callback
-	    	//======================
+			//onBeforeInit Callback
+			//======================
 			options.onBeforeInit(_this, $(el));
 
-		    _this.$el = $(el);
-		    
-		    _currentPage = 1;
+			_this.$el = $(el);
 
-		    _$paginationHolder = _this.$el.children().first();
+			_currentPage = 1;
 
-		    _totalItems = _$paginationHolder.children().length;
+			_$paginationHolder = _this.$el.children().first();
 
-		    _totalPages = Math.ceil(_totalItems/options.number_of_items);;
+			_$pageItems = _$paginationHolder.children();
 
-		    //onAfterInit callback
-		    //====================
+			_totalItems = _$pageItems.length;
+
+			_totalPages = Math.ceil(_totalItems / options.number_of_items);
+
+			_stealth_mode = options.stealth_mode;
+
+			//onAfterInit callback
+			//====================
 			options.onAfterInit(_this, $(el));
-		};
-
-		var _setPagingItems = function($dom) {
-			_$pageItems = $dom.children();
 		};
 
 		var _drawCurrentPage = function(pageNumber) {
 			pageNumber = pageNumber || 1;
-			if(_isPageValid(pageNumber)) {
-
+			if (_isPageValid(pageNumber)) {
 
 				var number_of_items = options.number_of_items,
 					totalItems = _totalItems,
 					number_of_items_to_show,
-					start = 0, end = 5,
+					start = 0,
+					end = 5,
 					$pagerDom = _this.$el.find("ul.pager");
 
 				//onBeforeEveryDraw Callback
@@ -67,31 +69,35 @@
 
 				_currentPage = pageNumber;
 
-				start = parseInt((pageNumber*number_of_items) - number_of_items);
-				end = parseInt((pageNumber*number_of_items));
-				
+				start = parseInt((pageNumber * number_of_items) - number_of_items);
+				end = parseInt((pageNumber * number_of_items));
+
+				//todo: animation here
 				_$paginationHolder.html("");
 				for (var i = start; i < end; i++) {
 					_$paginationHolder.append(_$pageItems.eq(i));
 				};
-				if($pagerDom && $pagerDom.length) {
-					$pagerDom.replaceWith(_getPager(options.pagination_type));
-				} else {
-					_$paginationHolder.after(_getPager(options.pagination_type));
+
+				if(!_stealth_mode) {
+					if ($pagerDom && $pagerDom.length) {
+						$pagerDom.replaceWith(_getPager(options.pagination_type));
+					} else {
+						_$paginationHolder.after(_getPager(options.pagination_type));
+					}
+					$pagerDom = _this.$el.find("ul.pager");
 				}
-				$pagerDom = _this.$el.find("ul.pager")
 
 				//onFirstPage callback
 				//====================
-				if(_isFirstPage()) {
+				if (_isFirstPage()) {
 					$(".first, .prev", $pagerDom).attr('disabled', 'disabled');
 					options.onFirstPage(_this, $pagerDom);
 				}
-				$(".page_"+pageNumber, $pagerDom).attr('disabled', 'disabled');
+				$(".page_" + pageNumber, $pagerDom).attr('disabled', 'disabled');
 
 				//onLastPage callback
 				//====================
-				if(_isLastPage()) {
+				if (_isLastPage()) {
 					$(".next, .last", $pagerDom).attr('disabled', 'disabled');
 					options.onLastPage(_this, $pagerDom);
 				}
@@ -111,29 +117,31 @@
 		};
 
 		var _isPageValid = function(number) {
-			if(number < 1) {
+			if (number < 1) {
 				return false;
-			} else if(number > _totalPages) {
+			} else if (number > _totalPages) {
 				return false;
 			}
 			return true;
 		};
 
 		var _bindEvents = function($el) {
-			$el.off(".paging", '.pager button', pageEventsManager);
-			$el.on('click.paging, keydown.paging', '.pager button', $el, pageEventsManager);
+			if(!_stealth_mode) {
+				$el.off(".paging", '.pager button', pageEventsManager);
+				$el.on('click.paging, keydown.paging', '.pager button', $el, pageEventsManager);
+			}
 		};
 
 		var pageEventsManager = function(evt) {
 			var $target = $(evt.target);
-			if((evt.type == 'keydown' && evt.keyCode == 13) || evt.type == 'click') {
-				if($target.hasClass('next')) {
+			if ((evt.type == 'keydown' && evt.keyCode == 13) || evt.type == 'click') {
+				if ($target.hasClass('next')) {
 					nextPage($target);
-				} else if($target.hasClass('prev')) {
+				} else if ($target.hasClass('prev')) {
 					prevPage($target);
-				} else if($target.hasClass('last')) {
+				} else if ($target.hasClass('last')) {
 					lastPage($target);
-				} else if($target.hasClass('first')) {
+				} else if ($target.hasClass('first')) {
 					firstPage($target);
 				} else {
 					anyPage($target);
@@ -147,13 +155,13 @@
 
 		var nextPage = function($target) {
 			var currentPageNumber = _this.getCurrentPageNumber();
-			_drawCurrentPage(currentPageNumber+1);
+			_drawCurrentPage(currentPageNumber + 1);
 			$target.focus();
 		};
 
 		var prevPage = function($target) {
 			var currentPageNumber = _this.getCurrentPageNumber();
-			_drawCurrentPage(currentPageNumber-1);
+			_drawCurrentPage(currentPageNumber - 1);
 			$target.focus();
 		};
 
@@ -167,69 +175,58 @@
 			$target.focus();
 		};
 
-		var anyPage = function ($target) {
+		var anyPage = function($target) {
 			_drawCurrentPage(parseInt($target.text()));
 			$target.focus();
 		};
 
-		/*var _getTemplate = function() {
-			if(options.template != null && options.template != "") {
-				return options.template;
-			} else {
-				switch(options.markup) {
-					case: "list":
-
-					break;
-				}
-			}
-		};*/
-
 		var _pagerButtons = {
 			getFirstButton: function(text) {
-				return '<button class="first" type="button">'+(text||"First")+'</button>';
+				return '<button class="first" type="button">' + (text || "First") + '</button>';
 			},
 			getLastButton: function(text) {
-				return '<button class="last" type="button">'+(text||"Last")+'</button>';
+				return '<button class="last" type="button">' + (text || "Last") + '</button>';
 			},
 			getPrevButton: function(text) {
-				return '<button class="prev" type="button">'+(text||"Prev")+'</button>';
+				return '<button class="prev" type="button">' + (text || "Prev") + '</button>';
 			},
 			getNextButton: function(text) {
-				return '<button class="next" type="button">'+(text||"Next")+'</button>';
+				return '<button class="next" type="button">' + (text || "Next") + '</button>';
 			},
 			getPagerButton: function(text) {
-				return '<button type="button" class="page_'+text+'">'+text+'</button>';
+				return '<button type="button" class="page_' + text + '">' + text + '</button>';
 			}
 		};
 
 		var _getPager = function(type) {
-			var pagerTemplate, pagerArray = _getPagerArray(_currentPage), theme = options.theme;
-			switch(type) {
+			var pagerTemplate, pagerArray = _getPagerArray(_currentPage),
+				theme = options.theme;
+			switch (type) {
 				case "prev_next":
-					pagerTemplate = '<ul class="pager pager_'+_index+' '+theme+'">'+
-										'<li>'+_pagerButtons.getPrevButton()+'</li>'+
-										'<li>'+_pagerButtons.getNextButton()+'</li>'+
-									'</ul>';
-				break;
+					pagerTemplate = '<ul class="pager pager_' + _index + ' ' + theme + '">' +
+						'<li>' + _pagerButtons.getPrevButton() + '</li>' +
+						'<li>' + _pagerButtons.getNextButton() + '</li>' +
+						'</ul>';
+					break;
 				case "first_prev_next_last":
-					pagerTemplate = '<ul class="pager pager_'+_index+' '+theme+'">'+
-										'<li>'+_pagerButtons.getFirstButton()+'</li>'+
-										'<li>'+_pagerButtons.getPrevButton()+'</li>'+
-										'<li>'+_pagerButtons.getNextButton()+'</li>'+
-										'<li>'+_pagerButtons.getLastButton()+'</li>'+
-									'</ul>';
-				break;
-				default: 
-					pagerTemplate = '<ul class="pager pager_'+_index+' '+theme+'">'+
-										'<li>'+_pagerButtons.getFirstButton()+'</li>'+
-										'<li>'+_pagerButtons.getPrevButton()+'</li>';
+					pagerTemplate = '<ul class="pager pager_' + _index + ' ' + theme + '">' +
+						'<li>' + _pagerButtons.getFirstButton() + '</li>' +
+						'<li>' + _pagerButtons.getPrevButton() + '</li>' +
+						'<li>' + _pagerButtons.getNextButton() + '</li>' +
+						'<li>' + _pagerButtons.getLastButton() + '</li>' +
+						'</ul>';
+					break;
+				default:
+					pagerTemplate = '<ul class="pager pager_' + _index + ' ' + theme + '">' +
+						'<li>' + _pagerButtons.getFirstButton() + '</li>' +
+						'<li>' + _pagerButtons.getPrevButton() + '</li>';
 					for (var _i = 0; _i < pagerArray.length; _i++) {
-						pagerTemplate += '<li>'+_pagerButtons.getPagerButton(pagerArray[_i])+'</li>'; 
+						pagerTemplate += '<li>' + _pagerButtons.getPagerButton(pagerArray[_i]) + '</li>';
 					};
-					pagerTemplate += 	'<li>'+_pagerButtons.getNextButton()+'</li>'+
-										'<li>'+_pagerButtons.getLastButton()+'</li>'+
-									'</ul>';
-				break;
+					pagerTemplate += '<li>' + _pagerButtons.getNextButton() + '</li>' +
+						'<li>' + _pagerButtons.getLastButton() + '</li>' +
+						'</ul>';
+					break;
 			};
 			return pagerTemplate;
 		};
@@ -275,7 +272,6 @@
 			_$paginationHolder.html(_$pageItems);
 		};
 
-
 		_init();
 
 		/*
@@ -288,18 +284,18 @@
 			return _currentPage;
 		};
 		_this.drawPage = function(number) {
-			if(number > 0) {
+			if (number > 0) {
 				_drawCurrentPage(number);
 			}
 		};
 		_this.goToPage = _this.drawPage;
 		_this.goToNextPage = function() {
-			var pageNumber = _currentPage+1;
-			_this.drawPage(_currentPage+1);
+			var pageNumber = _currentPage + 1;
+			_this.drawPage(_currentPage + 1);
 			return _isLastPage() ? _currentPage : pageNumber;
 		};
 		_this.goToPrevPage = function() {
-			var pageNumber = _currentPage-1;
+			var pageNumber = _currentPage - 1;
 			_this.drawPage(pageNumber);
 			return _isFirstPage() ? _currentPage : pageNumber;
 		};
@@ -313,15 +309,15 @@
 			_destroy();
 		};
 
-	    (function init(){
-	        _initialize();
-	    })();
+		(function init() {
+			_initialize();
+		})();
 	};
 
 	$.paging.defaultOptions = {
-		number_of_items: 2,
+		number_of_items: 5,
 		pagination_type: "full_numbers",
-		number_of_page_buttons: 5,
+		number_of_page_buttons: 3,
 		stealth_mode: false,
 		onBeforeEveryDraw: function() {},
 		onAfterEveryDraw: function() {},
@@ -329,14 +325,14 @@
 		onAfterInit: function() {},
 		onFirstPage: function() {},
 		onLastPage: function() {},
-		theme: "blue"
+		theme: "light_connected"
 	};
 
-	$.fn.paging = function(options){
-	    return this.each(function( index, element ){
-	        if ( undefined == $( element ).data('paging_set') ) {
-	            $( element ).data('paging_set', new $.paging( element, options, index));
-	        }
-	    });
+	$.fn.paging = function(options) {
+		return this.each(function(index, element) {
+			if (undefined == $(element).data('paging_js')) {
+				$(element).data('paging_js', new $.paging(element, options, index));
+			}
+		});
 	};
 })(jQuery);

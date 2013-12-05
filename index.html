@@ -15,35 +15,120 @@
 
 	<div class="pagination_wrapper">
 		<ul class="pagination">
-			<li><div>Item 1</div></li>
-			<li>Item 2</li>
-			<li>Item 3</li>
-			<li>Item 4</li>
-			<li>Item 5</li>
-			<li>Item 6</li>
-			<li>Item 7</li>
-			<li>Item 8</li>
-			<li>Item 9</li>
-			<li>Item 10</li>
+			<li>
+				<img src="img/placeholder.jpg" />
+				<div>Item 1</div>
+			</li>
+			<li>
+				<img src="img/placeholder.jpg" />
+				<div>Item 2</div>
+			</li>
+			<li>
+				<img src="img/placeholder.jpg" />
+				<div>Item 3</div>
+			</li>
+			<li>
+				<img src="img/placeholder.jpg" />
+				<div>Item 4</div>
+			</li>
+			<li>
+				<img src="img/placeholder.jpg" />
+				<div>Item 5</div>
+			</li>
+			<li>
+				<img src="img/placeholder.jpg" />
+				<div>Item 6</div>
+			</li>
+			<li>
+				<img src="img/placeholder.jpg" />
+				<div>Item 7</div>
+			</li>
+			<li>
+				<img src="img/placeholder.jpg" />
+				<div>Item 8</div>
+			</li>
+			<li>
+				<img src="img/placeholder.jpg" />
+				<div>Item 9</div>
+			</li>
+			<li>
+				<img src="img/placeholder.jpg" />
+				<div>Item 10</div>
+			</li>
 		</ul>
 	</div>
 	<div class="pagination_wrapper">
 		<ul class="pagination">
-			<li>Item 1</li>
-			<li>Item 2</li>
-			<li>Item 3</li>
-			<li>Item 4</li>
-			<li>Item 5</li>
-			<li>Item 6</li>
-			<li>Item 7</li>
+			<li>
+				<img src="img/gift1.png" />
+				<div>Gift 1</div>
+			</li>
+			<li>
+				<img src="img/gift2.png" />
+				<div>Gift 2</div>
+			</li>
+			<li>
+				<img src="img/gift3.png" />
+				<div>Gift 3</div>
+			</li>
+			<li>
+				<img src="img/gift4.png" />
+				<div>Gift 4</div>
+			</li>
+			<li>
+				<img src="img/gift5.png" />
+				<div>Gift 5</div>
+			</li>
+			<li>
+				<img src="img/gift6.png" />
+				<div>Gift 6</div>
+			</li>
+			<li>
+				<img src="img/gift2.png" />
+				<div>Gift 7</div>
+			</li>
+			<li>
+				<img src="img/gift3.png" />
+				<div>Gift 8</div>
+			</li>
+			<li>
+				<img src="img/gift4.png" />
+				<div>Gift 9</div>
+			</li>
 		</ul>
 	</div>
+	<a href="http://www.IconDrawer.com">Icons from 	IconDrawer</a>
 	<script type="text/javascript">
 		jQuery(document).ready(function($) {
 			$(".pagination_wrapper").paging({
-				number_of_items: 2,
-				pagination_type: "full_numbers", //first_prev_next_last
-				number_of_page_buttons: 3
+				//Number of items to show per page
+				//================================
+				number_of_items: 4,	//default: 5 | takes: non-zero numeral less than total limit
+
+				//pagination type
+				//===============
+				pagination_type: "full_numbers", // default full_numbers | takes: full_numbers | prev_next | first_prev_next_last
+
+				//Number of buttons to show if in case of "full_numbers" pagination_type
+				//======================================================================
+				number_of_page_buttons: 3, //default 3 | takes: non-zero numeral less than total page size
+
+				//Stealth Mode in case when no pagination should be shown but paginate using custom elements via pagination api
+				//===============================================================================================================
+				stealth_mode: false, //default false | takes: Boolean true | false
+
+				//Callbacks
+				//=========
+				onBeforeInit: function(instance, $el) {},
+				onAfterInit: function(instance, $el) {},
+				onBeforeEveryDraw: function(instance, $pager) {},
+				onAfterEveryDraw: function(instance, $pager) {},
+				onFirstPage: function(instance, $pager) {},
+				onLastPage: function(instance, $pager) {},
+
+				//Color scheme
+				//============
+				theme: "light_connected"//default light_connected | takes: light_connected | light | blue | ""
 			});
 		});
 	</script>

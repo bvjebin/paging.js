@@ -29,3 +29,10 @@
 	padding: 10px;
 	border: 1px solid #ccc;
 }
+.pagination_wrapper ul li img {
+	height: 100px;
+	width: 100px;
+}
+.pagination_wrapper ul li div {
+	text-align: center;
+}
