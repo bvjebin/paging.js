@@ -1,0 +1,31 @@
+
+.header {
+	width: 100%;
+	height: 150px;
+	background: #ccc;
+	text-align: center;
+	display: inline-table;
+}
+
+.pagination_wrapper {
+	width: 50%;
+	float: left;
+	padding: 4% 0;
+	border: 1px ridge #ccc;
+	box-sizing: border-box;
+}
+.pagination_wrapper ul.pagination {
+	margin: 0 auto;
+	display: table;
+}
+.pagination_wrapper ul.pagination li {
+	display: inline-block;
+	padding: 10px;
+	border: 1px solid #ccc;
+	margin: 5px;
+}
+.pagination_wrapper ul.pager li {
+	display: inline-block;
+	padding: 10px;
+	border: 1px solid #ccc;
+}

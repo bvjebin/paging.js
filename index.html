@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+	<title>Paging.js</title>
+	<link rel="stylesheet" type="text/css" href="./css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="./css/paging.css">
+	<link rel="stylesheet" type="text/css" href="./css/style.css">
+	<script type="text/javascript" src="./js/jquery-1.10.2.js"></script>
+	<script type="text/javascript" src="./js/paging.js"></script>
+</head>
+<body>
+	<div role="header" class="header">
+		<h1>Paging JS</h1>
+	</div>
+
+	<div class="pagination_wrapper">
+		<ul class="pagination">
+			<li><div>Item 1</div></li>
+			<li>Item 2</li>
+			<li>Item 3</li>
+			<li>Item 4</li>
+			<li>Item 5</li>
+			<li>Item 6</li>
+			<li>Item 7</li>
+			<li>Item 8</li>
+			<li>Item 9</li>
+			<li>Item 10</li>
+		</ul>
+	</div>
+	<div class="pagination_wrapper">
+		<ul class="pagination">
+			<li>Item 1</li>
+			<li>Item 2</li>
+			<li>Item 3</li>
+			<li>Item 4</li>
+			<li>Item 5</li>
+			<li>Item 6</li>
+			<li>Item 7</li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".pagination_wrapper").paging({
+				number_of_items: 2,
+				pagination_type: "full_numbers", //first_prev_next_last
+				number_of_page_buttons: 3
+			});
+		});
+	</script>
+</body>
+</html>
