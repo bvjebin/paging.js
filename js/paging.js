@@ -47,6 +47,8 @@
 
 			_stealth_mode = options.stealth_mode;
 
+			_$paginationHolder.css('opacity', '0');
+
 			//onAfterInit callback
 			//====================
 			options.onAfterInit(_this, $(el));
@@ -72,11 +74,24 @@
 				start = parseInt((pageNumber * number_of_items) - number_of_items);
 				end = parseInt((pageNumber * number_of_items));
 
-				//todo: animation here
-				_$paginationHolder.html("");
-				for (var i = start; i < end; i++) {
-					_$paginationHolder.append(_$pageItems.eq(i));
-				};
+				if(options.animate !== true) {
+					_$paginationHolder.html("");
+					for (var i = start; i < end; i++) {
+						_$paginationHolder.append(_$pageItems.eq(i));
+					};
+				} else {
+					_$paginationHolder.children().fadeOut(function(){
+						_$paginationHolder.html("");
+						for (var i = start; i < end; i++) {
+							_$paginationHolder.append(_$pageItems.eq(i));
+						};
+						_$paginationHolder.children().each(function(i) {
+							$(this).fadeIn(200*i);	
+						});
+					});
+				}
+				
+				_$paginationHolder.css('opacity', '1');
 
 				if(!_stealth_mode) {
 					if ($pagerDom && $pagerDom.length) {
@@ -319,6 +334,7 @@
 		pagination_type: "full_numbers",
 		number_of_page_buttons: 3,
 		stealth_mode: false,
+		animate: true,
 		onBeforeEveryDraw: function() {},
 		onAfterEveryDraw: function() {},
 		onBeforeInit: function() {},
