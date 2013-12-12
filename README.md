@@ -1,10 +1,24 @@
 paging.js
 =========
 
-Yet Another Pagination!
+paging.js is a simple, stylish and flexible pagination plugin for web developers!
 
-Documentation, Minified version, yet to come. 
+Download the repo. You will find all required information in the demo page(index.html) file.
 
-Please wait for a while. 
+Soon you will find elegant documentation and approach here.
 
-Thanks for the patience! :)
+Minified version, yet to come. 
+
+Wait for a features...
+
+Upcoming features:
+--------------------------
+1) Various animation types
+
+2) Slider type pagination style
+
+3) Ajax handlings
+
+
+Stay tunned! :)
+
