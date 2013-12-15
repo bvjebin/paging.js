@@ -3,7 +3,7 @@ paging.js
 
 paging.js is a simple, stylish and flexible pagination plugin for web developers!
 
-![paginate](https://github.com/bvjebin/paging.js/blob/master/img/pagingjs.png)
+![paginate](https://github.com/bvjebin/paging.js/raw/master/img/pagingjs.png)
 
 ----------------------------------------------------------------------
 
