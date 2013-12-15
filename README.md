@@ -3,9 +3,14 @@ paging.js
 
 paging.js is a simple, stylish and flexible pagination plugin for web developers!
 
+![paginate](https://github.com/bvjebin/paging.js/blob/master/img/pagingjs.png)
+
+----------------------------------------------------------------------
+
+<br>
 <h4>Installation</h4>
 
-Include CSS: 
+Include CSS:
 
 	<link rel="stylesheet" type="text/css" href="css/paging.css">
 
@@ -52,7 +57,7 @@ Call paging method on DOM element
 	</div>
 
 <br>
-<strong>Public APIs</strong>
+**Public APIs**
 
 Get the pagination instance: 
 
@@ -95,7 +100,7 @@ Remove pagination and get the original DOM:
 	pagingjsInstance.destroy();
 
 <br>
-<strong>Available Options</strong>
+**Available Options**
 
 Number of items to show per page
 
@@ -135,7 +140,7 @@ Callbacks
 
 	onLastPage: function(instance, $pager) {}
 
-<strong>Adding new theme:</strong>
+**Adding new theme:**
 
 To add a new theme, add css styles to your stylesheet like below and specify the classname as value to <code>theme</code> option
 
