@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Paging.js : Simple, stylish, flexible Pagination!" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Paging.js</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/bvjebin/paging.js">View on GitHub</a>
+
+          <h1 id="project_title">Paging.js</h1>
+          <h2 id="project_tagline">Simple, stylish, flexible Pagination!</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/bvjebin/paging.js/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/bvjebin/paging.js/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="pagingjs" class="anchor" href="#pagingjs"><span class="octicon octicon-link"></span></a>paging.js</h1>
+
+<p>paging.js is a simple, stylish and flexible pagination plugin for web developers!</p>
+
+<p><img src="https://github.com/bvjebin/paging.js/raw/master/img/pagingjs.png" alt="paginate"></p>
+
+<hr><p><br></p>
+
+<h4>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h4>
+
+<p>Include CSS:</p>
+
+<pre><code>&lt;link rel="stylesheet" type="text/css" href="css/paging.css"&gt;
+</code></pre>
+
+<p>Include JS: </p>
+
+<p>jQuery must be included </p>
+
+<pre><code>&lt;script type="text/javascript" src="js/jquery-1.10.2.js"&gt;&lt;/script&gt; 
+</code></pre>
+
+<p>Include paging.js after jQuery</p>
+
+<p>Development Version:(10Kb)</p>
+
+<pre><code>&lt;script type="text/javascript" src="js/paging.js"&gt;&lt;/script&gt;
+</code></pre>
+
+<p>Compressed Version:(6.5Kb)</p>
+
+<pre><code>&lt;script type="text/javascript" src="js/paging.min.js"&gt;&lt;/script&gt;
+</code></pre>
+
+<p>Call paging method on DOM element</p>
+
+<pre><code>$("#id_selector, .class_selector").paging(); 
+</code></pre>
+
+<p><br></p>
+
+<h4>
+<a name="expected-html-dom-structure" class="anchor" href="#expected-html-dom-structure"><span class="octicon octicon-link"></span></a>Expected HTML DOM structure:</h4>
+
+<p><em>div structure</em></p>
+
+<pre><code>&lt;div id="wrappper"&gt;
+    &lt;div&gt;
+        &lt;div&gt;Item1&lt;/div&gt;
+        &lt;div&gt;Item2&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p><em>ul-li structure</em></p>
+
+<pre><code>&lt;div id="wrappper"&gt;
+    &lt;ul&gt;
+        &lt;li&gt;Item1&lt;/li&gt;
+        &lt;li&gt;Item2&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p><br><strong>Public APIs</strong></p>
+
+<p>Get the pagination instance: </p>
+
+<pre><code>var pagingjsInstance = $("#selector").data("paging_js");
+</code></pre>
+
+<p>Get total number of pages:</p>
+
+<pre><code>pagingjsInstance.getTotalPages();
+</code></pre>
+
+<p>Get current page number:</p>
+
+<pre><code>pagingjsInstance.getCurrentPageNumber();
+</code></pre>
+
+<p>Draw page:</p>
+
+<pre><code>pagingjsInstance.drawPage();
+</code></pre>
+
+<p>Go to Page: </p>
+
+<pre><code>pagingjsInstance.goToPage(page_number);
+</code></pre>
+
+<p>Go to next page:</p>
+
+<pre><code>pagingjsInstance.goToNextPage();
+</code></pre>
+
+<p>Go to previous page:</p>
+
+<pre><code>pagingjsInstance.goToPrevPage();
+</code></pre>
+
+<p>Check if current page is first page:</p>
+
+<pre><code>pagingjsInstance.isFirstPage();
+</code></pre>
+
+<p>Check if current page is last page:</p>
+
+<pre><code>pagingjsInstance.isLastPage();
+</code></pre>
+
+<p>Remove pagination and get the original DOM:</p>
+
+<pre><code>pagingjsInstance.destroy();
+</code></pre>
+
+<p><br><strong>Available Options</strong></p>
+
+<p>Number of items to show per page</p>
+
+<pre><code>number_of_items: 4 //default: 5 | takes: non-zero numeral less than total limit
+</code></pre>
+
+<p>pagination type</p>
+
+<pre><code>pagination_type: "full_numbers" // default full_numbers | takes: full_numbers | prev_next | first_prev_next_last
+</code></pre>
+
+<p>Number of buttons to show if in case of "full_numbers" pagination_type</p>
+
+<pre><code>number_of_page_buttons: 3 //default 3 | takes: non-zero numeral less than total page size
+</code></pre>
+
+<p>Stealth Mode in case when no pagination should be shown but paginate using custom elements via pagination api</p>
+
+<pre><code>stealth_mode: false //default false | takes: Boolean true | false
+</code></pre>
+
+<p>Color scheme</p>
+
+<pre><code>theme: "light_connected" //default light_connected | takes: light_connected | light | blue | ""
+</code></pre>
+
+<p>Animate</p>
+
+<pre><code>animate: true //default true | takes: true | false
+</code></pre>
+
+<p>Callbacks</p>
+
+<pre><code>onBeforeInit: function(instance, $el) {}
+
+onAfterInit: function(instance, $el) {}
+
+onBeforeEveryDraw: function(instance, $pager) {}
+
+onAfterEveryDraw: function(instance, $pager) {}
+
+onFirstPage: function(instance, $pager) {}
+
+onLastPage: function(instance, $pager) {}
+</code></pre>
+
+<p><strong>Adding new theme:</strong></p>
+
+<p>To add a new theme, add css styles to your stylesheet like below and specify the classname as value to <code>theme</code> option</p>
+
+<pre><code>.pager.&lt;your_classname&gt; button {
+    //Your styles here - normal state
+}
+.pager.&lt;your_classname&gt; button:hover {
+    //Your styles here - hover state
+}
+.pager.&lt;your_classname&gt; button:active {
+    //Your styles here - active state
+}
+.pager.&lt;your_classname&gt; button[disabled='disabled'] {
+    //Your styles here - disabled state
+}
+</code></pre>
+
+<h2>
+<a name="upcoming-features" class="anchor" href="#upcoming-features"><span class="octicon octicon-link"></span></a>Upcoming features:</h2>
+
+<p>1) Various animation types</p>
+
+<p>2) Slider type pagination style</p>
+
+<p>3) Ajax handlings</p>
+
+<p>Stay tunned! :)</p>
+
+<p><em>Contact me @ <a href="mailto:bvjebin@gmail.com">bvjebin@gmail.com</a></em></p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Paging.js maintained by <a href="https://github.com/bvjebin">bvjebin</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
