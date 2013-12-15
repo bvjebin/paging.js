@@ -47,7 +47,7 @@
 
 			_stealth_mode = options.stealth_mode;
 
-			_$paginationHolder.css('opacity', '0');
+			_$paginationHolder.css('visibility', 'hidden');
 
 			//onAfterInit callback
 			//====================
@@ -75,13 +75,13 @@
 				end = parseInt((pageNumber * number_of_items));
 
 				if(options.animate !== true) {
-					_$paginationHolder.html("");
+					_$paginationHolder.html("").css('visibility', 'visible');
 					for (var i = start; i < end; i++) {
 						_$paginationHolder.append(_$pageItems.eq(i));
 					};
 				} else {
 					_$paginationHolder.children().fadeOut(function(){
-						_$paginationHolder.html("");
+						_$paginationHolder.html("").css('visibility', 'visible');
 						for (var i = start; i < end; i++) {
 							_$paginationHolder.append(_$pageItems.eq(i));
 						};
@@ -91,7 +91,6 @@
 					});
 				}
 				
-				_$paginationHolder.css('opacity', '1');
 
 				if(!_stealth_mode) {
 					if ($pagerDom && $pagerDom.length) {
@@ -142,8 +141,14 @@
 
 		var _bindEvents = function($el) {
 			if(!_stealth_mode) {
-				$el.off(".paging", '.pager button', pageEventsManager);
-				$el.on('click.paging, keydown.paging', '.pager button', $el, pageEventsManager);
+				// $el.off(".paging", '.pager button', pageEventsManager);
+				// $el.on('click.paging, keydown.paging', '.pager button', $el, pageEventsManager);
+				$el[0].removeEventListener('click', pageEventsManager, false);
+				$el[0].addEventListener('click', function(evt) {
+					if(evt.target.nodeName == 'BUTTON' && $(evt.target).parents(".pager").length) {
+						pageEventsManager(evt);
+					}
+				}, false);
 			}
 		};
 

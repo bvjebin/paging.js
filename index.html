@@ -2,11 +2,13 @@
 <html>
 <head>
 	<title>paging.js</title>
-	<link rel="stylesheet" type="text/css" href="./css/normalize.css">
-	<link rel="stylesheet" type="text/css" href="./css/paging.css">
-	<link rel="stylesheet" type="text/css" href="./css/style.css">
-	<script type="text/javascript" src="./js/jquery-1.10.2.js"></script>
-	<script type="text/javascript" src="./js/paging.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="css/paging.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+	<!--<script type="text/javascript" src="js/jquery-1.6.2.js"></script>-->
+	<!--<script type="text/javascript" src="js/paging.js"></script>-->
+	<script type="text/javascript" src="js/paging.min.js"></script>
 </head>
 <body>
 	<div role="header" class="header">
@@ -16,7 +18,8 @@
 	</div>
 
 	<div class="pagination_wrapper left">
-		<ul class="pagination">
+		<!-- visibility:hidden style is added to hide initially the DOM before applying pagination -->
+		<ul class="pagination" style="visibility:hidden;">
 			<li>
 				<img src="img/placeholder.jpg" />
 				<div>Item 1</div>
@@ -60,49 +63,52 @@
 		</ul>
 	</div>
 	<div class="pagination_wrapper right">
-		<ul class="pagination">
-			<li>
-				<img src="img/gift1.png" />
-				<div>Gift 1</div>
-			</li>
-			<li>
-				<img src="img/gift2.png" />
-				<div>Gift 2</div>
-			</li>
-			<li>
-				<img src="img/gift3.png" />
-				<div>Gift 3</div>
-			</li>
-			<li>
-				<img src="img/gift4.png" />
-				<div>Gift 4</div>
-			</li>
-			<li>
-				<img src="img/gift5.png" />
-				<div>Gift 5</div>
-			</li>
-			<li>
-				<img src="img/gift6.png" />
-				<div>Gift 6</div>
-			</li>
-			<li>
-				<img src="img/gift2.png" />
-				<div>Gift 7</div>
-			</li>
-			<li>
-				<img src="img/gift3.png" />
-				<div>Gift 8</div>
-			</li>
-			<li>
-				<img src="img/gift4.png" />
-				<div>Gift 9</div>
-			</li>
-		</ul>
+		<div class="pagination" style="visibility:hidden;">
+			<div>
+				<img src="img/gift1.png">
+				<div>Item 1</div>
+			</div>
+			<div>
+				<img src="img/gift2.png">
+				<div>Item 2</div>
+			</div>
+			<div>
+				<img src="img/gift3.png">
+				<div>Item 3</div>
+			</div>
+			<div>
+				<img src="img/placeholder.jpg">
+				<div>Item 4</div>
+			</div>
+			<div>
+				<img src="img/gift5.png">
+				<div>Item 5</div>
+			</div>
+			<div>
+				<img src="img/gift6.png">
+				<div>Item 6</div>
+			</div>
+			<div>
+				<img src="img/placeholder.jpg">
+				<div>Item 7</div>
+			</div>
+			<div>
+				<img src="img/gift4.png">
+				<div>Item 8</div>
+			</div>
+			<div>
+				<img src="img/gift7.png">
+				<div>Item 9</div>
+			</div>
+			<div>
+				<img src="img/gift1.png">
+				<div>Item 10</div>
+			</div>
+		</div>
 	</div>
-	<hr class="horizontal" />
 	<script type="text/javascript">
 		jQuery(document).ready(function($) {
-			$(".pagination_wrapper").paging({
+			$(".pagination_wrapper.left").paging({
 				//Number of items to show per page
 				//================================
 				number_of_items: 4,	//default: 5 | takes: non-zero numeral less than total limit
@@ -116,8 +122,16 @@
 				number_of_page_buttons: 3, //default 3 | takes: non-zero numeral less than total page size
 
 				//Stealth Mode in case when no pagination should be shown but paginate using custom elements via pagination api
-				//===============================================================================================================
+				//=============================================================================================================
 				stealth_mode: false, //default false | takes: Boolean true | false
+
+				//Color scheme
+				//============
+				theme: "light_connected", //default light_connected | takes: light_connected | light | blue | ""
+
+				//animate
+				//=======
+				animate: true, //default true | takes: true | false
 
 				//Callbacks
 				//=========
@@ -126,15 +140,20 @@
 				onBeforeEveryDraw: function(instance, $pager) {},
 				onAfterEveryDraw: function(instance, $pager) {},
 				onFirstPage: function(instance, $pager) {},
-				onLastPage: function(instance, $pager) {},
+				onLastPage: function(instance, $pager) {}
+			});
+			$(".pagination_wrapper.right").paging({
+				//Number of items to show per page
+				//================================
+				number_of_items: 3,	//default: 5 | takes: non-zero numeral less than total limit
+
+				//pagination type
+				//===============
+				pagination_type: "prev_next", // default full_numbers | takes: full_numbers | prev_next | first_prev_next_last
 
 				//Color scheme
 				//============
 				theme: "light_connected", //default light_connected | takes: light_connected | light | blue | ""
-
-				//animate
-				//=======
-				animate: true //default true | takes: true | false
 			});
 		});
 	</script>
@@ -144,16 +163,16 @@
 			<div>
 				<em>Include CSS: </em>
 				<br>
-				&lt;link rel="stylesheet" type="text/css" href="./css/paging.css"&gt;
+				&lt;link rel="stylesheet" type="text/css" href="css/paging.css"&gt;
 			</div>
 			<div>
 				<em>Include JS: </em>
 				<br>
 				jQuery must be included
 				<br>
-				&lt;script type="text/javascript" src="./js/jquery-1.10.2.js"&gt;&lt;/script&gt;
+				&lt;script type="text/javascript" src="js/jquery-1.10.2.js"&gt;&lt;/script&gt;
 				<br>
-				&lt;script type="text/javascript" src="./js/paging.js"&gt;&lt;/script&gt;
+				&lt;script type="text/javascript" src="js/paging.js"&gt;&lt;/script&gt;
 			</div>
 			<div>
 				<code>$("#id_selector, .class_selector").paging();</code>
@@ -162,8 +181,10 @@
 				<em>
 					<strong>Expected Html DOM structure:<br></strong>
 					&lt;div#wrappper&gt;<br>
-					<div class="tabindent1">&lt;div&gt;Item1&lt;/div&gt;<br></div>
-					<div class="tabindent1">&lt;div&gt;Item2&lt;/div&gt;<br></div>
+					<div class="tabindent1">&lt;div&gt;<br></div>
+					<div class="tabindent2">&lt;div&gt;Item1&lt;/div&gt;<br></div>
+					<div class="tabindent2">&lt;div&gt;Item2&lt;/div&gt;<br></div>
+					<div class="tabindent1">&lt;/div&gt;<br></div>
 					&lt;/div&gt;<br>
 					<br>
 					&lt;div#wrappper&gt;<br>
@@ -189,7 +210,7 @@
 				pagingjsInstance.<strong>drawPage();</strong>
 			</div>
 			<div>
-				pagingjsInstance.<strong>goToPage();</strong>
+				pagingjsInstance.<strong>goToPage(page_number);</strong>
 			</div>
 			<div>
 				pagingjsInstance.<strong>goToNextPage();</strong>
@@ -226,6 +247,14 @@
 				<div><strong>stealth_mode: false</strong> //default false | takes: Boolean true | false</div>
 			</div>
 			<div>
+				<em>Color scheme</em>
+				<div><strong>theme: "light_connected"</strong> //default light_connected | takes: light_connected | light | blue | ""</div>
+			</div>
+			<div>
+				<em>Animate</em>
+				<div><strong>animate: true</strong> //default true | takes: true | false</div>
+			</div>
+			<div>
 				<em>Callbacks</em>
 				<div>
 					<strong>onBeforeInit</strong>: function(instance, $el) {}
@@ -245,14 +274,6 @@
 				<div>
 					<strong>onLastPage</strong>: function(instance, $pager) {}
 				</div>
-			</div>
-			<div>
-				<em>Color scheme</em>
-				<div><strong>theme: "light_connected"</strong> //default light_connected | takes: light_connected | light | blue | ""</div>
-			</div>
-			<div>
-				<em>Animate</em>
-				<div><strong>animate: true</strong> //default true | takes: true | false</div>
 			</div>
 			<br>
 			<br>
