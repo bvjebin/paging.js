@@ -3,6 +3,12 @@
 
   <head>
     <meta charset='utf-8' />
+
+	<link rel="image_src" type="image/jpeg" href="http://bvjebin.github.io/paging.js/images/Logo.png"/>
+	<meta itemprop="image" content="http://bvjebin.github.io/paging.js/images/Logo.png"/>
+	<meta property="og:image" content="http://bvjebin.github.io/paging.js/images/Logo.png"/>
+
+
     <meta http-equiv="X-UA-Compatible" content="chrome=1" />
     <meta name="description" content="Paging.js : Simple, stylish, flexible Pagination!" />
     <link rel="stylesheet" type="text/css" href="stylesheets/css/paging.css">
@@ -36,7 +42,17 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        
+        <div class="fb-share-button" data-href="http://bvjebin.github.io/paging.js/" data-width="100" data-type="button" style="margin-left: 15px;"></div>
+		<div id="fb-root"></div>
+		<script>
+			(function(d, s, id) {
+				var js, fjs = d.getElementsByTagName(s)[0];
+				if (d.getElementById(id)) return;
+				js = d.createElement(s); js.id = id;
+				js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=256618651077758";
+				fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
+		</script>
 	<div class="pagination_wrapper left">
 		<!-- visibility:hidden style is added to hide initially the DOM before applying pagination -->
 		<ul class="pagination" style="visibility:hidden;">
