@@ -1,6 +1,23 @@
 <!doctype html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:og="http://ogp.me/ns#"
+      xmlns:fb="http://www.facebook.com/2008/fbml">
 <head>
+	<meta charset='utf-8' />
+
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+
+    <meta name="description" content="Paging.js : Simple, Stylish, Flexible Pagination!" />
+    <meta property='og:app_id' content='1447120948843906'>
+    <meta property='og:site_name' content='Paging.js'/> 
+    <meta property='og:title' content='Paging.js'/>
+    <meta property='og:type' content='webutils:demo'/> 
+    <meta property='og:url' content='http://bvjebin.github.io/paging.js'/>
+    <meta property='og:image' content='http://bvjebin.github.io/paging.js/images/logo-big.png'/> 
+    <meta property='og:description' content="Simple, Stylish, Flexible Pagination!" />
+
+    <link rel="image_src" type="image/jpeg" href="http://bvjebin.github.io/paging.js/images/logo-big.png"/>
+    <meta itemprop="image" content="http://bvjebin.github.io/paging.js/images/Logo.png"/>
 	<title>paging.js</title>
 	<link rel="stylesheet" type="text/css" href="css/normalize.css">
 	<link rel="stylesheet" type="text/css" href="css/paging.css">
@@ -14,7 +31,30 @@
 	<div role="header" class="header">
 		<h1>paging.js</h1>
 		<h6>A Stylish yet Simple, flexible Pagination Plugin</h6>
-		<a target="_blank" href="https://github.com/bvjebin/paging.js" class="git_link">Git link</a>
+		<a target="_blank" href="http://bvjebin.github.io/paging.js/" class="git_link">Git link</a>
+		 <div class="social_plugin">
+          <!-- AddThis Button BEGIN -->
+            <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+                    <a class="addthis_button_facebook" addthis:url="http://bvjebin.github.io/paging.js/" addthis:title="Paging.js" addthis:description="Simple, stylish, flexible Pagination!"></a>
+                    <a class="addthis_button_twitter" addthis:url="http://bvjebin.github.io/paging.js/" addthis:title="Paging.js" addthis:description="Simple, stylish, flexible Pagination!"></a>
+                    <a class="addthis_button_linkedin" addthis:url="http://bvjebin.github.io/paging.js/" addthis:title="Paging.js" addthis:description="Simple, stylish, flexible Pagination!"></a>
+                    <a class="addthis_button_google_plusone_share" addthis:url="http://bvjebin.github.io/paging.js/" addthis:title="Paging.js" addthis:description="Simple, stylish, flexible Pagination!"></a>
+                    <a class="addthis_button_email" addthis:url="http://bvjebin.github.io/paging.js/" addthis:title="Paging.js" addthis:description="Simple, stylish, flexible Pagination!"></a>
+                    <a class="addthis_button_compact" addthis:url="http://bvjebin.github.io/paging.js/" addthis:title="Paging.js" addthis:description="Simple, stylish, flexible Pagination!"></a>
+            </div>
+            <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-52b1c104324872b6"></script>
+            <script type="text/javascript">
+            var addthis_config = {
+               ui_508_compliant: true
+               
+            };
+            var addthis_share = {
+                    email_template: "paging_js_template"
+            }
+            </script>
+            <!-- AddThis Button END -->
+    	</div>
 	</div>
 
 	<div class="pagination_wrapper left">
@@ -111,7 +151,7 @@
 			$(".pagination_wrapper.left").paging({
 				//Number of items to show per page
 				//================================
-				number_of_items: 4,	//default: 5 | takes: non-zero numeral less than total limit
+				number_of_items: 3,	//default: 5 | takes: non-zero numeral less than total limit
 
 				//pagination type
 				//===============

@@ -1,5 +1,5 @@
 /*
-	Paging.js v 0.1	
+	Paging.js v 0.2	
 	Author: jebin
 	git: https://github.com/bvjebin/paging.js
 */
@@ -271,7 +271,10 @@
 							left--;
 							pagerArray.push(left);
 						}
-
+					} else {
+						break;
+					}
+					if (pagerArray.length < pageButtons) {
 						if (right != totalPages) {
 							right++;
 							pagerArray.push(right);

@@ -99,3 +99,10 @@
 	border-radius: 3px;
 	border: 1px solid brown;
 }
+.social_plugin {
+	float: left;
+	width: 30%;
+	position: absolute;
+	top: 25px;
+	left: 25px;
+}
