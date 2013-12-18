@@ -14,10 +14,10 @@
 	<meta property='og:title' content='Paging.js'/>
 	<meta property='og:type' content='webutils:demo'/> 
 	<meta property='og:url' content='http://bvjebin.github.io/paging.js'/>
-	<meta property='og:image' content='http://bvjebin.github.io/paging.js/images/Logo.png'/> 
+	<meta property='og:image' content='http://bvjebin.github.io/paging.js/images/logo-big.png'/> 
 	<meta property='og:description' content="Simple, Stylish, Flexible Pagination!" />
 
-	<link rel="image_src" type="image/jpeg" href="http://bvjebin.github.io/paging.js/images/Logo.png"/>
+	<link rel="image_src" type="image/jpeg" href="http://bvjebin.github.io/paging.js/images/logo-big.png"/>
 	<meta itemprop="image" content="http://bvjebin.github.io/paging.js/images/Logo.png"/>
 
     <link rel="stylesheet" type="text/css" href="stylesheets/css/paging.css">
@@ -25,7 +25,7 @@
     
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
     
-    <script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="javascripts/jquery-1.10.2.js"></script>
     <script type="text/javascript" src="javascripts/paging.min.js"></script>
 
     <title>Paging.js</title>
@@ -51,18 +51,69 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-      	<a class="googleplus" href="https://plus.google.com/share?url=http://bvjebin.github.io/paging.js" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
-		Google+</a>
-        <div class="fb-like" data-href="http://bvjebin.github.io/paging.js" data-width="100" data-layout="button" data-action="like" data-show-faces="false" data-share="true" style="margin-left: 15px;"></div>
-		<div id="fb-root"></div>
-		<script>(function(d, s, id) {
-		  var js, fjs = d.getElementsByTagName(s)[0];
-		  if (d.getElementById(id)) return;
-		  js = d.createElement(s); js.id = id;
-		  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=1447120948843906";
-		  fjs.parentNode.insertBefore(js, fjs);
-		}(document, 'script', 'facebook-jssdk'));</script>
-	<div class="pagination_wrapper left">
+      	<div class="social_plugin">
+	      	<!-- AddThis Button BEGIN -->
+			<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+				<a class="addthis_button_facebook" addthis:url="http://bvjebin.github.io/paging.js/" addthis:title="Paging.js" addthis:description="Simple, stylish, flexible Pagination!"></a>
+				<a class="addthis_button_twitter" addthis:url="http://bvjebin.github.io/paging.js/" addthis:title="Paging.js" addthis:description="Simple, stylish, flexible Pagination!"></a>
+				<a class="addthis_button_linkedin" addthis:url="http://bvjebin.github.io/paging.js/" addthis:title="Paging.js" addthis:description="Simple, stylish, flexible Pagination!"></a>
+				<a class="addthis_button_google_plusone_share" addthis:url="http://bvjebin.github.io/paging.js/" addthis:title="Paging.js" addthis:description="Simple, stylish, flexible Pagination!"></a>
+				<a class="addthis_button_email" addthis:url="http://bvjebin.github.io/paging.js/" addthis:title="Paging.js" addthis:description="Simple, stylish, flexible Pagination!"></a>
+				<a class="addthis_button_compact" addthis:url="http://bvjebin.github.io/paging.js/" addthis:title="Paging.js" addthis:description="Simple, stylish, flexible Pagination!"></a>
+			</div>
+			<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+			<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-52b1c104324872b6"></script>
+			<script type="text/javascript">
+			var addthis_config = {
+			   ui_508_compliant: true
+			   
+			};
+			var addthis_share = {
+				email_template: "paging_js_template"
+			}
+			</script>
+			<!-- AddThis Button END -->
+		</div>
+      	
+	<h2>Default</h2>
+	<div class="pagination_wrapper default">
+		<div class="pagination" style="visibility:hidden;">
+			<div>
+				<img src="images/gift1.png">
+			</div>
+			<div>
+				<img src="images/gift2.png">
+			</div>
+			<div>
+				<img src="images/gift3.png">
+			</div>
+			<div>
+				<img src="images/placeholder.jpg">
+			</div>
+			<div>
+				<img src="images/gift5.png">
+			</div>
+			<div>
+				<img src="images/gift6.png">
+			</div>
+			<div>
+				<img src="images/placeholder.jpg">
+			</div>
+			<div>
+				<img src="images/gift4.png">
+			</div>
+			<div>
+				<img src="images/gift7.png">
+			</div>
+			<div>
+				<img src="images/gift1.png">
+			</div>
+		</div>
+	</div>
+	<pre><code>$(".pagination_wrapper.default").paging();</code></pre>
+	<br>
+	<h2>Full Numbers</h2>
+	<div class="pagination_wrapper full_numbers">
 		<!-- visibility:hidden style is added to hide initially the DOM before applying pagination -->
 		<ul class="pagination" style="visibility:hidden;">
 			<li>
@@ -107,7 +158,13 @@
 			</li>
 		</ul>
 	</div>
-	<div class="pagination_wrapper right">
+	<pre><code>$(".pagination_wrapper.full_numbers").paging({
+	number_of_items: 4,
+	number_of_page_buttons: 2
+});</code></pre>
+	<br>
+	<h2>Previous & Next</h2>
+	<div class="pagination_wrapper prev_next">
 		<div class="pagination" style="visibility:hidden;">
 			<div>
 				<img src="images/gift1.png">
@@ -151,6 +208,13 @@
 			</div>
 		</div>
 	</div>
+	<pre><code>$(".pagination_wrapper.prev_next").paging({
+	number_of_items: 3,
+	pagination_type: "prev_next",
+	theme: "blue"
+});</code></pre>
+	<br>
+	<h2>Stealth Mode</h2>
 	<div class="pagination_wrapper stealth_mode">
 		<div class="pagination" style="visibility:hidden;">
 			<div>
@@ -194,10 +258,29 @@
 				<div>Item 10</div>
 			</div>
 		</div>
+		<div id="stealth_prev" class="stealth_mode_prev stealth_ctrl">&lt;</div>
+		<div id="stealth_next" class="stealth_mode_next stealth_ctrl">&gt;</div>
 	</div>
+	<pre><code>$(".pagination_wrapper.stealth_mode").paging({
+	number_of_items: 3,
+	stealth_mode: true
+});
+
+var stealthModePagingInstace = $(".pagination_wrapper.stealth_mode")
+						.data("paging_js");
+$("#stealth_next").click(function(event) {
+	stealthModePagingInstace.goToNextPage();
+});
+$("#stealth_prev").click(function(event) {
+	stealthModePagingInstace.goToPrevPage();
+});</code></pre>
+<br>
+
 	<script type="text/javascript">
 		jQuery(document).ready(function($) {
-			$(".pagination_wrapper.left").paging({
+			$(".pagination_wrapper.default").paging();
+
+			$(".pagination_wrapper.full_numbers").paging({
 				//Number of items to show per page
 				//================================
 				number_of_items: 4,	//default: 5 | takes: non-zero numeral less than total limit
@@ -208,7 +291,7 @@
 		
 				//Number of buttons to show if in case of "full_numbers" pagination_type
 				//======================================================================
-				number_of_page_buttons: 3, //default 3 | takes: non-zero numeral less than total page size
+				number_of_page_buttons: 2, //default 3 | takes: non-zero numeral less than total page size
 		
 				//Stealth Mode in case when no pagination should be shown but paginate using custom elements via pagination api
 				//=============================================================================================================
@@ -231,7 +314,7 @@
 				onFirstPage: function(instance, $pager) {},
 				onLastPage: function(instance, $pager) {}
 			});
-			$(".pagination_wrapper.right").paging({
+			$(".pagination_wrapper.prev_next").paging({
 				//Number of items to show per page
 				//================================
 				number_of_items: 3,	//default: 5 | takes: non-zero numeral less than total limit
@@ -242,7 +325,7 @@
 		
 				//Color scheme
 				//============
-				theme: "light_connected", //default light_connected | takes: light_connected | light | blue | ""
+				theme: "blue", //default light_connected | takes: light_connected | light | blue | ""
 			});
 
 			$(".pagination_wrapper.stealth_mode").paging({
@@ -260,11 +343,22 @@
 
 				//stealth mode
 				//============
-				stealth_mode: true,
+				stealth_mode: true
 			});
+
+			var stealthModePagingInstace = $(".pagination_wrapper.stealth_mode").data("paging_js");
+			$("#stealth_next").click(function(event) {
+				stealthModePagingInstace.goToNextPage();
+			});
+			$("#stealth_prev").click(function(event) {
+				stealthModePagingInstace.goToPrevPage();
+			});
+
 		});
+		
 	</script>
-<hr><p><br></p>
+<hr>
+<p style="clear:both;"><br></p>
 
 <h4>
 <a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h4>
@@ -458,12 +552,9 @@ onLastPage: function(instance, $pager) {}
     <!-- FOOTER  -->
     <div id="footer_wrap" class="outer">
       <footer class="inner">
-        <p class="copyright">Paging.js maintained by <a href="https://github.com/bvjebin">bvjebin</a></p>
+        <p class="copyright">Paging.js maintained by <a href="//bvjebin.blogspot.com">bvjebin</a></p>
         <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
-
-    
-
   </body>
 </html>
