@@ -166,5 +166,5 @@ Upcoming features:
 3) Ajax handlings
 
 
-Stay tunned! :)
+Stay tuned! :)
 
