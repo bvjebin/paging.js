@@ -295,8 +295,6 @@
 			_$paginationHolder.html(_$pageItems);
 		};
 
-		_init();
-
 		/*
 			Public methods
 		*/
@@ -331,6 +329,8 @@
 		_this.destroy = function() {
 			_destroy();
 		};
+
+		_init();
 
 		(function init() {
 			_initialize();
