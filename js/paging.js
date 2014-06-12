@@ -4,14 +4,13 @@
 	git: https://github.com/bvjebin/paging.js
 */
 
-"use strict";;
-(function($) {
+"use strict";
+;(function($) {
 	$.paging = function(el, options, index) {
 
 		var _this = this,
 			_index = index,
 			options,
-			_template,
 			_$pageItems,
 			_$paginationHolder,
 			_totalPages,
@@ -20,7 +19,7 @@
 			_stealth_mode;
 
 		var _initialize = function() {
-			_drawCurrentPage();
+			_drawPage();
 			_bindEvents(_this.$el);
 			return;
 		};
@@ -54,13 +53,11 @@
 			options.onAfterInit(_this, $(el));
 		};
 
-		var _drawCurrentPage = function(pageNumber) {
+		var _drawPage = function(pageNumber) {
 			pageNumber = pageNumber || 1;
 			if (_isPageValid(pageNumber)) {
 
 				var number_of_items = options.number_of_items,
-					totalItems = _totalItems,
-					number_of_items_to_show,
 					start = 0,
 					end = 5,
 					$pagerDom = _this.$el.find("ul.pager");
@@ -71,8 +68,9 @@
 
 				_currentPage = pageNumber;
 
-				start = parseInt((pageNumber * number_of_items) - number_of_items);
-				end = parseInt((pageNumber * number_of_items));
+                end = parseInt((pageNumber * number_of_items));
+				start = parseInt(end - number_of_items);
+
 
 				if(options.animate !== true) {
 					_$paginationHolder.html("").css('visibility', 'visible');
@@ -86,7 +84,7 @@
 							_$paginationHolder.append(_$pageItems.eq(i));
 						};
 						_$paginationHolder.children().each(function(i) {
-							$(this).fadeIn(200*i);	
+							$(this).fadeIn(200*i);
 						});
 					});
 				}
@@ -131,9 +129,7 @@
 		};
 
 		var _isPageValid = function(number) {
-			if (number < 1) {
-				return false;
-			} else if (number > _totalPages) {
+			if (number < 1 || number > _totalPages) {
 				return false;
 			}
 			return true;
@@ -141,63 +137,33 @@
 
 		var _bindEvents = function($el) {
 			if(!_stealth_mode) {
-				// $el.off(".paging", '.pager button', pageEventsManager);
-				// $el.on('click.paging, keydown.paging', '.pager button', $el, pageEventsManager);
 				$el[0].removeEventListener('click', pageEventsManager, false);
-				$el[0].addEventListener('click', function(evt) {
-					if(evt.target.nodeName == 'BUTTON' && $(evt.target).parents(".pager").length) {
-						pageEventsManager(evt);
-					}
-				}, false);
+                $el[0].removeEventListener('keyup', pageEventsManager, false);
+				$el[0].addEventListener('click', pageEventsManager, false);
+                $el[0].addEventListener('keyup', pageEventsManager, false);
 			}
 		};
 
 		var pageEventsManager = function(evt) {
 			var $target = $(evt.target);
-			if ((evt.type == 'keydown' && evt.keyCode == 13) || evt.type == 'click') {
-				if ($target.hasClass('next')) {
-					nextPage($target);
-				} else if ($target.hasClass('prev')) {
-					prevPage($target);
-				} else if ($target.hasClass('last')) {
-					lastPage($target);
-				} else if ($target.hasClass('first')) {
-					firstPage($target);
-				} else {
-					anyPage($target);
-				}
-			}
-		};
-
-		_this.getCurrentPageNumber = function() {
-			return _currentPage;
-		}
-
-		var nextPage = function($target) {
-			var currentPageNumber = _this.getCurrentPageNumber();
-			_drawCurrentPage(currentPageNumber + 1);
-			$target.focus();
-		};
-
-		var prevPage = function($target) {
-			var currentPageNumber = _this.getCurrentPageNumber();
-			_drawCurrentPage(currentPageNumber - 1);
-			$target.focus();
-		};
-
-		var firstPage = function($target) {
-			_drawCurrentPage(1);
-			$target.focus();
-		};
-
-		var lastPage = function($target) {
-			_drawCurrentPage(_this.getTotalPages());
-			$target.focus();
-		};
-
-		var anyPage = function($target) {
-			_drawCurrentPage(parseInt($target.text()));
-			$target.focus();
+            if(evt.target.nodeName == 'BUTTON' && $target.parents(".pager").length) {
+                if ((evt.type == 'keydown' && evt.keyCode == 13) || evt.type == 'click') {
+                    var gotoPageNumber;
+                    if ($target.hasClass('next')) {
+                        gotoPageNumber = _currentPage + 1;
+                    } else if ($target.hasClass('prev')) {
+                        gotoPageNumber = _currentPage - 1;
+                    } else if ($target.hasClass('last')) {
+                        gotoPageNumber = _this.getTotalPages();
+                    } else if ($target.hasClass('first')) {
+                        gotoPageNumber = 1;
+                    } else {
+                        gotoPageNumber = parseInt($target.text());
+                    }
+                    _drawPage(gotoPageNumber);
+                    $target.focus();
+                }
+            }
 		};
 
 		var _pagerButtons = {
@@ -298,7 +264,7 @@
 		/*
 			Public methods
 		*/
-		_this.getTotalPages = function() {
+        _this.getTotalPages = function() {
 			return _totalPages;
 		};
 		_this.getCurrentPageNumber = function() {
@@ -306,7 +272,7 @@
 		};
 		_this.drawPage = function(number) {
 			if (number > 0) {
-				_drawCurrentPage(number);
+				_drawPage(number);
 			}
 		};
 		_this.goToPage = _this.drawPage;
