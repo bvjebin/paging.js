@@ -8,7 +8,7 @@ paging.js is a simple, stylish and flexible pagination plugin for web developers
 ----------------------------------------------------------------------
 
 <br>
-<h4>Installation</h4>
+<h4>Installation:</h4>
 
 Include CSS:
 
